@@ -25,11 +25,11 @@ def _weights(name, shape, mean=0.0, stddev=0.001, initializer=None):
         var: x-D tensor, weights.
     """
     if initializer == 'glorot_normal_tanh':
-        fin = shape[2]
-        fout = shape[3]
-        if len(shape) == 2:
-            fin = shape[0]
-            fout = shape[1]
+        fin = shape[0]
+        fout = shape[1]
+        if len(shape) == 4:
+            fin = shape[2]
+            fout = shape[3]
         fin = tf.cast(fin, tf.float32)
         fout = tf.cast(fout, tf.float32)
         var = tf.get_variable(
@@ -38,11 +38,11 @@ def _weights(name, shape, mean=0.0, stddev=0.001, initializer=None):
             )
         )
     elif initializer == 'glorot_uniform_tanh':
-        fin = shape[2]
-        fout = shape[3]
-        if len(shape) == 2:
-            fin = shape[0]
-            fout = shape[1]
+        fin = shape[0]
+        fout = shape[1]
+        if len(shape) == 4:
+            fin = shape[2]
+            fout = shape[3]
         fin = tf.cast(fin, tf.float32)
         fout = tf.cast(fout, tf.float32)
         var = tf.get_variable(
@@ -51,11 +51,11 @@ def _weights(name, shape, mean=0.0, stddev=0.001, initializer=None):
             )
         )
     elif initializer == 'glorot_normal_sigmoid':
-        fin = shape[2]
-        fout = shape[3]
-        if len(shape) == 2:
-            fin = shape[0]
-            fout = shape[1]
+        fin = shape[0]
+        fout = shape[1]
+        if len(shape) == 4:
+            fin = shape[2]
+            fout = shape[3]
         fin = tf.cast(fin, tf.float32)
         fout = tf.cast(fout, tf.float32)
         var = tf.get_variable(
@@ -64,11 +64,11 @@ def _weights(name, shape, mean=0.0, stddev=0.001, initializer=None):
             )
         )
     elif initializer == 'glorot_uniform_sigmoid':
-        fin = shape[2]
-        fout = shape[3]
-        if len(shape) == 2:
-            fin = shape[0]
-            fout = shape[1]
+        fin = shape[0]
+        fout = shape[1]
+        if len(shape) == 4:
+            fin = shape[2]
+            fout = shape[3]
         fin = tf.cast(fin, tf.float32)
         fout = tf.cast(fout, tf.float32)
         var = tf.get_variable(
@@ -77,9 +77,9 @@ def _weights(name, shape, mean=0.0, stddev=0.001, initializer=None):
             )
         )
     elif initializer == 'he_normal':
-        fin = shape[2]
-        if len(shape) == 2:
-            fin = shape[0]
+        fin = shape[0]
+        if len(shape) == 4:
+            fin = shape[2]
         fin = tf.cast(fin, tf.float32)
         var = tf.get_variable(
             name, shape, initializer=tf.random_normal_initializer(
@@ -87,9 +87,9 @@ def _weights(name, shape, mean=0.0, stddev=0.001, initializer=None):
             )
         )
     elif initializer == 'he_uniform':
-        fin = shape[2]
-        if len(shape) == 2:
-            fin = shape[0]
+        fin = shape[0]
+        if len(shape) == 4:
+            fin = shape[2]
         fin = tf.cast(fin, tf.float32)
         var = tf.get_variable(
             name, shape, initializer=tf.random_normal_initializer(
